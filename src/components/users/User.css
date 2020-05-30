@@ -1,0 +1,23 @@
+.user-container{
+    padding: 15px;
+    border-bottom: 4px solid black;
+    text-align: left;
+}
+
+.card-body :hover{
+    cursor: pointer;
+    background: beige;
+}
+
+.user-address{
+    font-style: italic;
+    color: gray;
+}
+
+.user-name{
+    color: navy;
+}
+
+.user-id{
+    font-weight: bold;
+}
