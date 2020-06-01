@@ -12,7 +12,8 @@ class Search extends React.Component{
 
         this.state = {
             query: "",
-            results: [  ]
+            results: [  ],
+            cursor : 0
         }
 
     }
@@ -36,23 +37,25 @@ class Search extends React.Component{
     //     this.setState({ query : inputValue })
     // }
 
-    // the key direction arrows didnt work out!!
-    // handleKeyDown = (e) => {
-    //     const { cursor, results } = this.state
-    //     // arrow up/down button should select next/previous list element
-    //     if (e.keyCode === 38 && cursor > 0) {
-    //         this.setState( prevState => ({
-    //             cursor: prevState.cursor - 1
-    //         }))
-    //     } else if (e.keyCode === 40 && cursor < results.length - 1) {
-    //         this.setState( prevState => ({
-    //             cursor: prevState.cursor + 1
-    //         }))
-    //     }
-    // }
+   // the key direction arrows didnt work out!!
+    handleKeyDown = (e) => {
+        const { cursor, results } = this.state
+        // arrow up/down button should select next/previous list element
+        if (e.keyCode === 38 && cursor > 0) {
+            console.log(`up arrow`)
+            this.setState( prevState => ({
+                cursor: prevState.cursor - 1
+            }))
+        } else if (e.keyCode === 40 && cursor < results.length - 1) {
+            console.log(`down arrow`)
+            this.setState( prevState => ({
+                cursor: prevState.cursor + 1
+            }))
+        }
+    }
 
     render(){
-        const { query, results } = this.state
+        const { query, results, cursor } = this.state
         const filterSearch = results.filter( person => {
             return person.name.toLowerCase().includes(query.toLowerCase()) || person.address.toLowerCase().includes(query.toLowerCase())
                 || person.id.toLowerCase().startsWith(query.toLowerCase())
@@ -69,12 +72,13 @@ class Search extends React.Component{
                         id="search-input"
                         placeholder="Search Users by ID,Address,Name...."
                         onChange={this.onhandleInputChange}
+                        onKeyDown={this.handleKeyDown}
                     />
                     <span><FontAwesomeIcon icon={faSearch} className="search-icon"/></span>
                 </label>
                 { query.length ?
                     <Scroll>
-                        <UserList users = { filterSearch } query={query} />
+                        <UserList users = { filterSearch } query={query} cursor={cursor}/>
                     </Scroll> : null
                 }
             </div>

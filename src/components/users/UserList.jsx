@@ -2,13 +2,14 @@ import React from "react"
 import User from "./User"
 import EmptyItem from "../resultcard/emptyitem/EmptyItem"
 
-const UserList = ({users, query}) => {
+const UserList = ({users, query, cursor}) => {
     let user = users.map((user, i) => {
         return <User name={user.name}
                      address={user.address}
                      id={user.id}
                      query={query}
                      key={i}
+                     className = { cursor === i ? "highlight" : "" }
         />
     })
 
