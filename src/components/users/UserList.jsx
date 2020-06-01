@@ -3,15 +3,17 @@ import User from "./User"
 import EmptyItem from "../resultcard/emptyitem/EmptyItem"
 
 const UserList = ({users, query}) => {
-    let user = users.map(user => {
+    let user = users.map((user, i) => {
         return <User name={user.name}
                      address={user.address}
                      id={user.id}
-                     key={Math.random()}
+                     query={query}
+                     key={i}
         />
     })
 
-    return (<div>
+    return (
+        <div>
             {query.length ?
                 <div>
                     {user.length ? <div className="card-body">{user}</div>
@@ -20,7 +22,7 @@ const UserList = ({users, query}) => {
                     }
                 </div>
                 :
-                ""
+                null
             }
         </div>
     )

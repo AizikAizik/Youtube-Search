@@ -2,6 +2,7 @@
     padding: 15px;
     border-bottom: 4px solid black;
     text-align: left;
+    background: white;
 }
 
 .card-body :hover{
@@ -15,7 +16,13 @@
 }
 
 .user-name{
+    color: gray;
+}
+
+.highlight{
     color: navy;
+    font-style: italic;
+    font-size: 26px;
 }
 
 .user-id{

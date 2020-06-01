@@ -31,6 +31,11 @@ class Search extends React.Component{
         this.setState({ query })
     }
 
+    // onhoverChange = ( inputValue, index = 0) =>{
+    //      inputValue = this.state.results[index].name
+    //     this.setState({ query : inputValue })
+    // }
+
     // the key direction arrows didnt work out!!
     // handleKeyDown = (e) => {
     //     const { cursor, results } = this.state
