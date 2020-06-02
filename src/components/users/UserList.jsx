@@ -9,7 +9,8 @@ const UserList = ({users, query, cursor}) => {
                      id={user.id}
                      query={query}
                      key={i}
-                     className = { cursor === i ? "highlight" : "" }
+                     index={i}
+                     cursor = { cursor }
         />
     })
 

@@ -13,7 +13,8 @@ class Search extends React.Component{
         this.state = {
             query: "",
             results: [  ],
-            cursor : 0
+            cursor : 0,
+            result2: [  ]
         }
 
     }
@@ -37,7 +38,7 @@ class Search extends React.Component{
     //     this.setState({ query : inputValue })
     // }
 
-   // the key direction arrows didnt work out!!
+   // the key direction arrows work now
     handleKeyDown = (e) => {
         const { cursor, results } = this.state
         // arrow up/down button should select next/previous list element
@@ -54,12 +55,27 @@ class Search extends React.Component{
         }
     }
 
+    // trying to fix cursor indexing for navigation by populating state with filtered search data
+    handleKeyUp = (array) => {
+        if(array.length < 1){
+            const ar = array.slice(0,1)
+            this.setState({ result2 : array })
+        }else{
+            const arr2 = array.slice(0, array.length - 2)
+            this.setState({result2 : arr2})
+        }
+        //this.setState({result2: array})
+
+    }
+
     render(){
         const { query, results, cursor } = this.state
         const filterSearch = results.filter( person => {
             return person.name.toLowerCase().includes(query.toLowerCase()) || person.address.toLowerCase().includes(query.toLowerCase())
                 || person.id.toLowerCase().startsWith(query.toLowerCase())
         } )
+
+        console.log(filterSearch)
 
         return(
             <div className="container">
@@ -71,8 +87,9 @@ class Search extends React.Component{
                         value={ query }
                         id="search-input"
                         placeholder="Search Users by ID,Address,Name...."
-                        onChange={this.onhandleInputChange}
-                        onKeyDown={this.handleKeyDown}
+                        onChange={(e) => this.onhandleInputChange(e)}
+                        onKeyDown={(e)=> { this.handleKeyDown(e)} }
+                        //onKeyPress={()=> this.handleKeyUp(filterSearch)}
                     />
                     <span><FontAwesomeIcon icon={faSearch} className="search-icon"/></span>
                 </label>

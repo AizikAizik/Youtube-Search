@@ -9,7 +9,7 @@ const User = (props) => {
     }
 
     return (
-        <div className="user-container" >
+        <div className="user-container " id={props.cursor === props.index  ? "key-highlight" : null}>
             <h3 className="user-id">{props.id}</h3>
             <h4 className="user-name" id="h5">{ <span dangerouslySetInnerHTML={{__html:highlight(props.name)}} />  }</h4>
             <p className="user-address">{ props.address }</p>

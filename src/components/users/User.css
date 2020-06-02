@@ -10,6 +10,10 @@
     background: beige;
 }
 
+#key-highlight{
+    background: beige;
+}
+
 .user-address{
     font-style: italic;
     color: gray;
